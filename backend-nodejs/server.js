@@ -7,6 +7,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const ordersRouter = require('./routes/orders');
+const supabase = require('./config/supabase'); // Initialize Supabase once at startup
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -32,7 +33,6 @@ app.use('/api/orders', ordersRouter);
 // Companies route (simple proxy to orders router for now)
 app.get('/api/companies', async (req, res, next) => {
   try {
-    const supabase = require('./config/supabase');
     const { data, error } = await supabase
       .from('companies')
       .select('*')

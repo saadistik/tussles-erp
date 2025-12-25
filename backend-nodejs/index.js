@@ -1,3 +1,10 @@
-// Vercel entry point
-// This file imports and exports the Express app for Vercel serverless
-module.exports = require('./server.js');
+// ============================================
+// VERCEL SERVERLESS ENTRY POINT
+// This file MUST export the Express app for Vercel
+// Do NOT call app.listen() here
+// ============================================
+
+const app = require('./server.js');
+
+// Export for Vercel (Critical for serverless)
+module.exports = app;
