@@ -27,6 +27,20 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'Tussles API is running' });
 });
 
+// Enhanced health check with environment variables
+app.get('/api/health', (req, res) => {
+  res.json({
+    status: 'online',
+    message: 'Tussles Backend API is running',
+    timestamp: new Date().toISOString(),
+    env_check: {
+      has_supabase_url: !!process.env.SUPABASE_URL,
+      has_supabase_key: !!process.env.SUPABASE_ANON_KEY,
+      node_env: process.env.NODE_ENV || 'development'
+    }
+  });
+});
+
 // Routes
 app.use('/api/orders', ordersRouter);
 
