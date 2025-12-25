@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-zinc-800;
+  }
+  
+  body {
+    @apply bg-zinc-950 text-zinc-100 antialiased;
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-zinc-900;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-zinc-700 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-zinc-600;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Card */
+  .glass-card {
+    @apply bg-zinc-900/50 backdrop-blur-md border border-zinc-800 rounded-xl;
+  }
+  
+  /* Glow Button */
+  .btn-glow {
+    @apply relative overflow-hidden bg-indigo-600 hover:bg-indigo-500 
+           text-white font-medium px-6 py-2.5 rounded-lg
+           transition-all duration-300 hover:scale-105
+           hover:shadow-lg hover:shadow-indigo-500/50;
+  }
+  
+  /* Input Field */
+  .input-field {
+    @apply w-full px-4 py-2.5 bg-zinc-900/70 border border-zinc-800
+           rounded-lg text-zinc-100 placeholder-zinc-500
+           focus:outline-none focus:ring-2 focus:ring-indigo-500/50
+           focus:border-indigo-500 transition-all;
+  }
+  
+  /* Table Hover Row */
+  .table-row-hover {
+    @apply hover:bg-zinc-800/50 hover:scale-[1.01] 
+           transition-all duration-200 cursor-pointer;
+  }
+}
