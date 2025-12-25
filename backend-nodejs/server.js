@@ -74,13 +74,13 @@ app.use((req, res) => {
   });
 });
 
-// Start server only in development (not on Vercel)
-if (process.env.NODE_ENV !== 'production') {
+// Export for Vercel serverless (MUST be before listen)
+module.exports = app;
+
+// Start server only when running directly (not on Vercel)
+if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`🚀 Tussles Backend Server running on http://localhost:${PORT}`);
     console.log(`📊 Health check: http://localhost:${PORT}/health`);
   });
 }
-
-// Export for Vercel serverless
-module.exports = app;
