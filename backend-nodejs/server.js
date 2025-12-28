@@ -74,9 +74,20 @@ app.get('/api/health', (req, res) => {
     timestamp: new Date().toISOString(),
     env_check: {
       has_supabase_url: !!process.env.SUPABASE_URL,
-      has_supabase_key: !!process.env.SUPABASE_ANON_KEY,
+      has_supabase_key: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
       node_env: process.env.NODE_ENV || 'development'
     }
+  });
+});
+
+// Test endpoint to verify routing
+app.post('/api/test', (req, res) => {
+  console.log('Test endpoint hit');
+  res.json({ 
+    success: true, 
+    message: 'Test successful',
+    body: req.body,
+    headers: req.headers
   });
 });
 
