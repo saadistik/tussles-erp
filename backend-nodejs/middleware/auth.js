@@ -9,8 +9,10 @@ const supabase = require('../config/supabase');
 const requireAuth = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
+    console.log('🔐 Auth check - Header present:', !!authHeader);
     
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      console.log('❌ No valid authorization header');
       return res.status(401).json({
         success: false,
         message: 'No authorization token provided'
@@ -18,11 +20,14 @@ const requireAuth = async (req, res, next) => {
     }
 
     const token = authHeader.substring(7); // Remove 'Bearer ' prefix
+    console.log('🔑 Token extracted, length:', token.length);
 
     // Verify token with Supabase
     const { data: { user }, error } = await supabase.auth.getUser(token);
+    console.log('👤 Supabase user verification - Success:', !!user, 'Error:', error?.message || 'none');
 
     if (error || !user) {
+      console.log('❌ Token validation failed:', error?.message || 'No user found');
       return res.status(401).json({
         success: false,
         message: 'Invalid or expired token'

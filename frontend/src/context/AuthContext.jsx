@@ -166,8 +166,31 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const getAccessToken = () => {
-    return session?.access_token;
+  const getAccessToken = async () => {
+    try {
+      // Check if token needs refresh
+      const { data: { session: currentSession }, error } = await supabase.auth.getSession();
+      
+      if (error) {
+        console.error('Error getting session:', error);
+        return null;
+      }
+      
+      if (!currentSession) {
+        console.warn('No active session found');
+        return null;
+      }
+      
+      // Update session state if it changed
+      if (currentSession.access_token !== session?.access_token) {
+        setSession(currentSession);
+      }
+      
+      return currentSession.access_token;
+    } catch (error) {
+      console.error('Error in getAccessToken:', error);
+      return null;
+    }
   };
 
   const value = {
