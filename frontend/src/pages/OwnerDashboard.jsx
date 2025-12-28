@@ -407,29 +407,28 @@ const OwnerDashboard = () => {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex justify-between items-center"
+          className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0"
         >
           <div>
             <h1 className="text-lg sm:text-2xl md:text-3xl font-bold text-white">Financial Overview</h1>
             <p className="text-zinc-400 mt-1 text-xs sm:text-sm">Welcome back, {userData?.full_name}</p>
           </div>
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center gap-2 sm:space-x-3 flex-wrap">
             {/* Add Order Button */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setShowForm(!showForm)}
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transition flex items-center space-x-1 sm:space-x-2 text-sm sm:text-base"
+              className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transition flex items-center gap-1 sm:gap-2 text-sm sm:text-base flex-1 sm:flex-none justify-center"
             >
               <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="hidden xs:inline">Add Order</span>
-              <span className="xs:hidden">Add</span>
+              <span>Add</span>
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={fetchDashboardData}
-              className="bg-zinc-800 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg border border-zinc-700 hover:border-blue-500 transition flex items-center space-x-1 sm:space-x-2 text-sm sm:text-base"
+              className="bg-zinc-800 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg border border-zinc-700 hover:border-blue-500 transition flex items-center gap-1 sm:gap-2 text-sm sm:text-base"
             >
               <RefreshCw className="w-3 h-3 sm:w-4 sm:h-4" />
               <span className="hidden sm:inline">Refresh</span>
@@ -441,10 +440,10 @@ const OwnerDashboard = () => {
                 await signOut();
                 navigate('/login');
               }}
-              className="bg-red-600 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-red-700 transition flex items-center space-x-1 sm:space-x-2 text-sm sm:text-base"
+              className="bg-red-600 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-red-700 transition flex items-center gap-1 sm:gap-2 text-sm sm:text-base flex-1 sm:flex-none justify-center"
             >
               <LogOut className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="hidden sm:inline">Logout</span>
+              <span>Logout</span>
             </motion.button>
           </div>
         </motion.div>
