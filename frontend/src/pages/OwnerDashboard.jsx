@@ -401,7 +401,7 @@ const OwnerDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 p-6">
+    <div className="min-h-screen bg-zinc-950 p-3 sm:p-4 md:p-6">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <motion.div
@@ -410,8 +410,8 @@ const OwnerDashboard = () => {
           className="flex justify-between items-center"
         >
           <div>
-            <h1 className="text-3xl font-bold text-white">Financial Overview</h1>
-            <p className="text-zinc-400 mt-1">Welcome back, {userData?.full_name}</p>
+            <h1 className="text-lg sm:text-2xl md:text-3xl font-bold text-white">Financial Overview</h1>
+            <p className="text-zinc-400 mt-1 text-xs sm:text-sm">Welcome back, {userData?.full_name}</p>
           </div>
           <div className="flex items-center space-x-3">
             {/* Add Order Button */}
@@ -419,19 +419,20 @@ const OwnerDashboard = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setShowForm(!showForm)}
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transition flex items-center space-x-2"
+              className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:shadow-lg hover:shadow-blue-500/50 transition flex items-center space-x-1 sm:space-x-2 text-sm sm:text-base"
             >
-              <Plus className="w-4 h-4" />
-              <span>Add Order</span>
+              <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="hidden xs:inline">Add Order</span>
+              <span className="xs:hidden">Add</span>
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={fetchDashboardData}
-              className="bg-zinc-800 text-white px-4 py-2 rounded-lg border border-zinc-700 hover:border-blue-500 transition flex items-center space-x-2"
+              className="bg-zinc-800 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg border border-zinc-700 hover:border-blue-500 transition flex items-center space-x-1 sm:space-x-2 text-sm sm:text-base"
             >
-              <RefreshCw className="w-4 h-4" />
-              <span>Refresh</span>
+              <RefreshCw className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">Refresh</span>
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -440,33 +441,33 @@ const OwnerDashboard = () => {
                 await signOut();
                 navigate('/login');
               }}
-              className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition flex items-center space-x-2"
+              className="bg-red-600 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-red-700 transition flex items-center space-x-1 sm:space-x-2 text-sm sm:text-base"
             >
-              <LogOut className="w-4 h-4" />
-              <span>Logout</span>
+              <LogOut className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">Logout</span>
             </motion.button>
           </div>
         </motion.div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
           {/* Total Revenue Card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             whileHover={{ scale: 1.02 }}
-            className="bg-gradient-to-br from-green-600 to-emerald-600 rounded-2xl p-6 shadow-lg shadow-green-500/20"
+            className="bg-gradient-to-br from-green-600 to-emerald-600 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg shadow-green-500/20"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-green-100 text-sm font-medium">Total Revenue</p>
-                <p className="text-white text-3xl font-bold mt-2">
+                <p className="text-green-100 text-xs sm:text-sm font-medium">Total Revenue</p>
+                <p className="text-white text-xl sm:text-2xl md:text-3xl font-bold mt-1 sm:mt-2">
                   PKR {stats?.total_expected_revenue?.toLocaleString() || '0'}
                 </p>
               </div>
-              <div className="bg-white/20 p-3 rounded-xl">
-                <DollarSign className="w-8 h-8 text-white" />
+              <div className="bg-white/20 p-2 sm:p-3 rounded-lg sm:rounded-xl">
+                <DollarSign className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" />
               </div>
             </div>
           </motion.div>
@@ -477,15 +478,15 @@ const OwnerDashboard = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             whileHover={{ scale: 1.02 }}
-            className="bg-gradient-to-br from-yellow-600 to-orange-600 rounded-2xl p-6 shadow-lg shadow-yellow-500/20"
+            className="bg-gradient-to-br from-yellow-600 to-orange-600 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg shadow-yellow-500/20"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-yellow-100 text-sm font-medium">Pending Approvals</p>
-                <p className="text-white text-3xl font-bold mt-2">{stats?.pending_approvals || 0}</p>
+                <p className="text-yellow-100 text-xs sm:text-sm font-medium">Pending Approvals</p>
+                <p className="text-white text-xl sm:text-2xl md:text-3xl font-bold mt-1 sm:mt-2">{stats?.pending_approvals || 0}</p>
               </div>
-              <div className="bg-white/20 p-3 rounded-xl">
-                <Clock className="w-8 h-8 text-white" />
+              <div className="bg-white/20 p-2 sm:p-3 rounded-lg sm:rounded-xl">
+                <Clock className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" />
               </div>
             </div>
           </motion.div>
@@ -496,17 +497,17 @@ const OwnerDashboard = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             whileHover={{ scale: 1.02 }}
-            className="bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl p-6 shadow-lg shadow-blue-500/20"
+            className="bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg shadow-blue-500/20"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-100 text-sm font-medium">Completed Orders</p>
-                <p className="text-white text-3xl font-bold mt-2">
+                <p className="text-blue-100 text-xs sm:text-sm font-medium">Completed Orders</p>
+                <p className="text-white text-xl sm:text-2xl md:text-3xl font-bold mt-1 sm:mt-2">
                   {stats?.revenue_summary?.find(r => r.status === 'completed')?.order_count || 0}
                 </p>
               </div>
-              <div className="bg-white/20 p-3 rounded-xl">
-                <CheckCircle className="w-8 h-8 text-white" />
+              <div className="bg-white/20 p-2 sm:p-3 rounded-lg sm:rounded-xl">
+                <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" />
               </div>
             </div>
           </motion.div>
@@ -518,9 +519,9 @@ const OwnerDashboard = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-800 rounded-2xl p-6"
+            className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-800 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6"
           >
-            <h2 className="text-xl font-bold text-white mb-4">Revenue Breakdown</h2>
+            <h2 className="text-base sm:text-lg md:text-xl font-bold text-white mb-3 sm:mb-4">Revenue Breakdown</h2>
             <div className="overflow-x-auto">
               <table className="min-w-full">
                 <thead>
