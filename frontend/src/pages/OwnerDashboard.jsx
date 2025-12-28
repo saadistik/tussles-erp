@@ -257,6 +257,7 @@ const OwnerDashboard = () => {
         formDataToSend.append('tussle_image', imageFile);
       }
 
+      console.log('Sending order request to:', `${API_URL}/api/orders`);
       const response = await fetch(`${API_URL}/api/orders`, {
         method: 'POST',
         headers: {
@@ -265,7 +266,14 @@ const OwnerDashboard = () => {
         body: formDataToSend
       });
 
+      console.log('Response status:', response.status);
+      
+      // Get response text first to debug
+      const responseText = await response.text();
+      console.log('Response text:', responseText);
+
       if (response.ok) {
+        const data = responseText ? JSON.parse(responseText) : {};
         alert('Order created successfully!');
         setFormData({
           company_id: '',
@@ -281,8 +289,14 @@ const OwnerDashboard = () => {
         setShowForm(false);
         fetchDashboardData();
       } else {
-        const error = await response.json();
-        alert(`Error: ${error.message || 'Failed to create order'}`);
+        let errorMessage = 'Failed to create order';
+        try {
+          const error = responseText ? JSON.parse(responseText) : {};
+          errorMessage = error.message || errorMessage;
+        } catch (e) {
+          errorMessage = responseText || errorMessage;
+        }
+        alert(`Error: ${errorMessage}`);
       }
     } catch (error) {
       alert(`Failed to create order: ${error.message}`);
