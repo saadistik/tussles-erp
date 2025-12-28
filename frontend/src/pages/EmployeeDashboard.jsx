@@ -405,7 +405,7 @@ const EmployeeDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white p-6">
+    <div className="min-h-screen bg-zinc-950 text-white p-3 sm:p-4 md:p-6">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <motion.div 
@@ -414,14 +414,14 @@ const EmployeeDashboard = () => {
           className="flex justify-between items-center"
         >
           <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <h1 className="text-lg sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
               Employee Dashboard
             </h1>
-            <p className="text-zinc-400 mt-1">Create and manage your orders</p>
+            <p className="text-zinc-400 mt-1 text-xs sm:text-sm">Create and manage your orders</p>
           </div>
           <div className="flex items-center space-x-3">
             {/* View Toggle Buttons */}
-            <div className="flex items-center bg-white/5 rounded-lg p-1 border border-white/10">
+            <div className="flex items-center bg-white/5 rounded-lg p-0.5 sm:p-1 border border-white/10">
               <button
                 onClick={() => setViewMode('cards')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-md transition-all ${
@@ -450,10 +450,11 @@ const EmployeeDashboard = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setShowForm(!showForm)}
-              className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all shadow-lg shadow-blue-500/20"
+              className="flex items-center gap-2 px-3 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all shadow-lg shadow-blue-500/20 text-sm sm:text-base"
             >
-              <Plus className="w-5 h-5" />
+              <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
               <span className="hidden sm:inline">New Order</span>
+              <span className="sm:hidden">New</span>
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -462,10 +463,10 @@ const EmployeeDashboard = () => {
                 await signOut();
                 navigate('/login');
               }}
-              className="flex items-center gap-2 px-6 py-3 bg-red-600 rounded-lg hover:bg-red-700 transition-all shadow-lg"
+              className="flex items-center gap-2 px-3 py-2 sm:px-6 sm:py-3 bg-red-600 rounded-lg hover:bg-red-700 transition-all shadow-lg text-sm sm:text-base"
             >
-              <LogOut className="w-5 h-5" />
-              Logout
+              <LogOut className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="hidden sm:inline">Logout</span>
             </motion.button>
           </div>
         </motion.div>
@@ -755,23 +756,23 @@ const EmployeeDashboard = () => {
             </div>
           ) : viewMode === 'calendar' ? (
             // Calendar View
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 md:p-6">
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-2 sm:p-4 md:p-6">
               {/* Calendar Header */}
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center justify-between mb-3 sm:mb-6">
                 <button
                   onClick={previousMonth}
-                  className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                  className="p-1.5 sm:p-2 hover:bg-white/10 rounded-lg transition-colors"
                 >
-                  <ChevronLeft className="w-5 h-5" />
+                  <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
                 
                 <div className="text-center">
-                  <h2 className="text-xl font-bold text-white">
+                  <h2 className="text-base sm:text-lg md:text-xl font-bold text-white">
                     {currentMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
                   </h2>
                   <button
                     onClick={goToToday}
-                    className="text-sm text-blue-400 hover:text-blue-300 transition-colors mt-1"
+                    className="text-xs sm:text-sm text-blue-400 hover:text-blue-300 transition-colors mt-0.5 sm:mt-1"
                   >
                     Today
                   </button>
@@ -779,18 +780,19 @@ const EmployeeDashboard = () => {
                 
                 <button
                   onClick={nextMonth}
-                  className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                  className="p-1.5 sm:p-2 hover:bg-white/10 rounded-lg transition-colors"
                 >
-                  <ChevronRight className="w-5 h-5" />
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </div>
 
               {/* Calendar Grid */}
-              <div className="grid grid-cols-7 gap-2">
+              <div className="grid grid-cols-7 gap-0.5 sm:gap-1 md:gap-2">
                 {/* Day Headers */}
-                {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-                  <div key={day} className="text-center text-sm font-semibold text-zinc-500 py-2">
-                    {day}
+                {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day, idx) => (
+                  <div key={day} className="text-center text-[10px] sm:text-xs md:text-sm font-semibold text-zinc-500 py-1 sm:py-2">
+                    <span className="hidden sm:inline">{day}</span>
+                    <span className="sm:hidden">{day.charAt(0)}</span>
                   </div>
                 ))}
                 
@@ -802,7 +804,7 @@ const EmployeeDashboard = () => {
                   // Empty cells before first day
                   for (let i = 0; i < startingDayOfWeek; i++) {
                     days.push(
-                      <div key={`empty-${i}`} className="aspect-square p-2"></div>
+                      <div key={`empty-${i}`} className="min-h-[50px] sm:min-h-[70px] md:min-h-[100px]"></div>
                     );
                   }
                   
@@ -816,9 +818,9 @@ const EmployeeDashboard = () => {
                     days.push(
                       <motion.div
                         key={day}
-                        whileHover={{ scale: hasOrders ? 1.05 : 1 }}
+                        whileHover={{ scale: hasOrders ? 1.02 : 1 }}
                         onClick={() => hasOrders && handleDateClick(date)}
-                        className={`min-h-[120px] md:min-h-[140px] p-1.5 md:p-2 rounded-lg border transition-all ${
+                        className={`min-h-[60px] xs:min-h-[80px] sm:min-h-[100px] md:min-h-[120px] p-1 xs:p-1.5 sm:p-2 rounded border sm:rounded-lg transition-all ${
                           isToday 
                             ? 'border-blue-500 bg-blue-500/20' 
                             : hasOrders 
@@ -827,21 +829,21 @@ const EmployeeDashboard = () => {
                         }`}
                       >
                         <div className="flex flex-col h-full">
-                          <span className={`text-sm font-medium mb-1 ${
+                          <span className={`text-[10px] xs:text-xs sm:text-sm font-medium mb-0.5 sm:mb-1 ${
                             isToday ? 'text-blue-400' : 'text-white'
                           }`}>
                             {day}
                           </span>
                           
                           {hasOrders && (
-                            <div className="flex-1 overflow-y-auto space-y-1 scrollbar-thin scrollbar-thumb-white/10">
-                              {ordersForDay.slice(0, 4).map((order, idx) => (
+                            <div className="flex-1 overflow-hidden space-y-0.5 sm:space-y-1">
+                              {ordersForDay.slice(0, 2).map((order, idx) => (
                                 <motion.div
                                   key={idx}
                                   initial={{ opacity: 0, scale: 0.8 }}
                                   animate={{ opacity: 1, scale: 1 }}
                                   transition={{ delay: idx * 0.05 }}
-                                  className={`relative px-1.5 py-1 rounded text-xs font-medium truncate ${
+                                  className={`relative px-1 py-0.5 sm:px-1.5 sm:py-1 rounded text-[8px] xs:text-[9px] sm:text-xs font-medium truncate ${
                                     order.status === 'completed' 
                                       ? 'bg-green-500/20 text-green-300 border border-green-500/50 shadow-lg shadow-green-500/30' 
                                       : order.status === 'awaiting_approval' 
@@ -862,9 +864,9 @@ const EmployeeDashboard = () => {
                                   </div>
                                 </motion.div>
                               ))}
-                              {ordersForDay.length > 4 && (
-                                <div className="text-xs text-center text-zinc-400 font-semibold py-0.5">
-                                  +{ordersForDay.length - 4} more
+                              {ordersForDay.length > 2 && (
+                                <div className="text-[8px] xs:text-[9px] sm:text-xs text-center text-zinc-400 font-semibold py-0.5">
+                                  +{ordersForDay.length - 2} more
                                 </div>
                               )}
                             </div>
