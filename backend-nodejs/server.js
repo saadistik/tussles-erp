@@ -17,14 +17,28 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
   'https://your-vercel-app.vercel.app', // Replace with your actual Vercel domain
-  process.env.FRONTEND_URL
+  process.env.FRONTEND_URL,
+  'https://tussles-erp.vercel.app', // Add your actual frontend URL here
+  /\.vercel\.app$/ // Allow all Vercel apps for testing
 ].filter(Boolean);
 
 app.use(cors({
   origin: (origin, callback) => {
     // Allow requests with no origin (mobile apps, Postman, etc.)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV === 'development') {
+    
+    // Check if origin is in allowed list or matches Vercel pattern
+    const isAllowed = allowedOrigins.some(allowed => {
+      if (typeof allowed === 'string') {
+        return allowed === origin;
+      }
+      if (allowed instanceof RegExp) {
+        return allowed.test(origin);
+      }
+      return false;
+    });
+    
+    if (isAllowed || process.env.NODE_ENV === 'development') {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
