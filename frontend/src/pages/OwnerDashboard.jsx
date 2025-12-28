@@ -100,19 +100,19 @@ const OwnerDashboard = () => {
       const headers = { Authorization: `Bearer ${token}` };
 
       // Fetch stats
-      const statsResponse = await axios.get('http://localhost:3000/api/orders/dashboard/stats', { headers });
+      const statsResponse = await axios.get(`${API_URL}/api/orders/dashboard/stats`, { headers });
       setStats(statsResponse.data.data);
 
       // Fetch pending approvals
-      const ordersResponse = await axios.get('http://localhost:3000/api/orders?status=awaiting_approval', { headers });
+      const ordersResponse = await axios.get(`${API_URL}/api/orders?status=awaiting_approval`, { headers });
       setPendingOrders(ordersResponse.data.data);
 
       // Fetch completed orders
-      const completedResponse = await axios.get('http://localhost:3000/api/orders/completed', { headers });
+      const completedResponse = await axios.get(`${API_URL}/api/orders/completed`, { headers });
       setCompletedOrders(completedResponse.data.data);
 
       // Fetch all orders for calendar
-      const allOrdersResponse = await axios.get('http://localhost:3000/api/orders', { headers });
+      const allOrdersResponse = await axios.get(`${API_URL}/api/orders`, { headers });
       setAllOrders(allOrdersResponse.data.data);
     } catch (error) {
       console.error('Failed to fetch dashboard data:', error);
@@ -366,7 +366,7 @@ const OwnerDashboard = () => {
 
     try {
       const token = await getAccessToken();
-      await axios.post(`http://localhost:3000/api/orders/${orderId}/approve`, {}, {
+      await axios.post(`${API_URL}/api/orders/${orderId}/approve`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
