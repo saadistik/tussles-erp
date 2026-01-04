@@ -10,7 +10,8 @@ import Login from './pages/Login';
 import EmployeeDashboard from './pages/EmployeeDashboard';
 import OwnerDashboard from './pages/OwnerDashboard';
 import TussleDetail from './pages/TussleDetail';
-import Clients from './pages/Clients';
+import Companies from './pages/Companies';
+import CompanyBoard from './pages/CompanyBoard';
 import Orders from './pages/Orders';
 import Products from './pages/Products';
 
@@ -83,6 +84,24 @@ function App() {
 
           {/* MRP System Routes */}
           <Route
+            path="/companies"
+            element={
+              <ProtectedRoute>
+                <Companies />
+              </ProtectedRoute>
+            }
+          />
+          
+          <Route
+            path="/companies/:id"
+            element={
+              <ProtectedRoute>
+                <CompanyBoard />
+              </ProtectedRoute>
+            }
+          />
+          
+          <Route
             path="/tussles/:id"
             element={
               <ProtectedRoute>
@@ -95,7 +114,7 @@ function App() {
             path="/clients"
             element={
               <ProtectedRoute>
-                <Clients />
+                <Companies />
               </ProtectedRoute>
             }
           />
