@@ -1,5 +1,5 @@
 // ============================================
-// Owner Dashboard with Financial Overview (Dark Mode)
+// Owner Dashboard with Financial Overview (Nature Glass Design)
 // File: frontend/src/pages/OwnerDashboard.jsx
 // ============================================
 
@@ -31,6 +31,8 @@ import {
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import AppLayout from '../components/layout/AppLayout';
+import GlassCard from '../components/ui/GlassCard';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
@@ -401,17 +403,17 @@ const OwnerDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 p-3 sm:p-4 md:p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <AppLayout>
+      <div className="container mx-auto px-4 py-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0"
+          className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0 mb-8"
         >
           <div>
-            <h1 className="text-lg sm:text-2xl md:text-3xl font-bold text-white">Financial Overview</h1>
-            <p className="text-zinc-400 mt-1 text-xs sm:text-sm">Welcome back, {userData?.full_name}</p>
+            <h1 className="text-3xl md:text-4xl font-bold text-white">Financial Overview</h1>
+            <p className="text-white/70 mt-1 text-sm sm:text-base">Welcome back, {userData?.full_name}</p>
           </div>
           <div className="flex items-center gap-2 sm:space-x-3 flex-wrap">
             {/* Add Order Button */}
@@ -1295,7 +1297,7 @@ const OwnerDashboard = () => {
                     {selectedOrder.approved_by && (
                       <div className="flex items-center gap-3 text-sm">
                         <CheckCircle className="w-4 h-4 text-green-500" />
-                        <span className="text-zinc-400">Approved by:</span>
+                        <span className="text-white/60">Approved by:</span>
                         <span className="text-white font-medium">{selectedOrder.approver?.full_name}</span>
                       </div>
                     )}
@@ -1303,8 +1305,8 @@ const OwnerDashboard = () => {
 
                   {/* Notes */}
                   {selectedOrder.notes && (
-                    <div className="mt-4 bg-zinc-800/50 rounded-xl p-4">
-                      <p className="text-sm text-zinc-400 mb-2">Notes</p>
+                    <div className="mt-4 bg-white/5 rounded-xl p-4 border border-white/10">
+                      <p className="text-sm text-white/60 mb-2">Notes</p>
                       <p className="text-white italic">"{selectedOrder.notes}"</p>
                     </div>
                   )}
@@ -1313,9 +1315,11 @@ const OwnerDashboard = () => {
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
+      </AppLayout>
     </div>
   );
 };
+
+export default OwnerDashboard;
 
 export default OwnerDashboard;

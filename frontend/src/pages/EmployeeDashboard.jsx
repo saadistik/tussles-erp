@@ -21,6 +21,8 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import AppLayout from '../components/layout/AppLayout';
+import GlassCard from '../components/ui/GlassCard';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
@@ -405,19 +407,19 @@ const EmployeeDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white p-3 sm:p-4 md:p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <AppLayout>
+      <div className="container mx-auto px-4 py-6">
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex justify-between items-center"
+          className="flex justify-between items-center mb-8"
         >
           <div>
-            <h1 className="text-lg sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <h1 className="text-3xl md:text-4xl font-bold text-white">
               Employee Dashboard
             </h1>
-            <p className="text-zinc-400 mt-1 text-xs sm:text-sm">Create and manage your orders</p>
+            <p className="text-white/70 mt-1 text-sm sm:text-base">Create and manage your orders</p>
           </div>
           <div className="flex items-center space-x-3">
             {/* View Toggle Buttons */}
@@ -1208,7 +1210,7 @@ const EmployeeDashboard = () => {
           )}
         </AnimatePresence>
       </div>
-    </div>
+    </AppLayout>
   );
 };
 
