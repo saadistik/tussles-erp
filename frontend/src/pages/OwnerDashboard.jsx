@@ -1315,10 +1315,9 @@ const OwnerDashboard = () => {
             </motion.div>
           )}
         </AnimatePresence>
-      </AppLayout>
+      </div>
+    </AppLayout>
   );
 };
-
-export default OwnerDashboard;
 
 export default OwnerDashboard;
