@@ -1,6 +1,6 @@
 // ============================================
-// Tussle Detail Page - Album Art Style
-// File: frontend/src/pages/TussleDetail.jsx
+// Tussle Detail Page - Nature Glass Redesign
+// Production Workspace with Materials & Labor Tracking
 // ============================================
 
 import React, { useState, useEffect } from 'react';
