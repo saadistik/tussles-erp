@@ -63,24 +63,40 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Animated background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-zinc-950 to-purple-900/20"></div>
-      
-      {/* Spotlight effect */}
-      <motion.div
-        className="absolute w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
-        animate={{
-          x: [0, 100, 0],
-          y: [0, -100, 0],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-        style={{ top: '20%', left: '10%' }}
-      />
+    <div className="min-h-screen relative overflow-hidden flex items-center justify-center p-4">
+      {/* Nature Glass Gradient Background */}
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-nature-emerald via-nature-teal to-nature-ocean" />
+        
+        {/* Animated Floating Blobs */}
+        <motion.div
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -100, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute top-20 left-20 w-96 h-96 bg-nature-gold/30 rounded-full blur-3xl"
+        />
+        
+        <motion.div
+          animate={{
+            x: [0, -100, 0],
+            y: [0, 100, 0],
+            scale: [1, 1.3, 1],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute bottom-20 right-20 w-[30rem] h-[30rem] bg-nature-leaf/20 rounded-full blur-3xl"
+        />
+      </div>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -97,20 +113,24 @@ const Login = () => {
             className="flex justify-center mb-4"
           >
             <div className="relative">
-              <Zap className="text-blue-400" size={64} />
-              <div className="absolute inset-0 bg-blue-500/30 blur-2xl animate-pulse" />
+              <Zap className="text-nature-gold" size={64} strokeWidth={2} />
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 border-4 border-nature-teal/30 rounded-full"
+              />
             </div>
           </motion.div>
           <h1 className="text-4xl font-bold text-white mb-2">
-            Tussles ERP
+            TradeFlow
           </h1>
-          <p className="text-zinc-400">Manufacturing Order Management</p>
+          <p className="text-white/70">Manufacturing Resource Planning</p>
         </div>
 
         {/* Glass-morphism card */}
-        <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-800 rounded-2xl p-8 shadow-2xl">
+        <div className="bg-white/10 backdrop-blur-2xl border border-white/30 rounded-3xl p-8 shadow-glass-lg">
           <h2 className="text-2xl font-semibold mb-6 text-center text-white">
-            {isSignUp ? 'Create Employee Account' : 'Sign In'}
+            {isSignUp ? 'Create Account' : 'Welcome Back'}
           </h2>
 
           {/* Error Message */}
