@@ -9,6 +9,10 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Login from './pages/Login';
 import EmployeeDashboard from './pages/EmployeeDashboard';
 import OwnerDashboard from './pages/OwnerDashboard';
+import TussleDetail from './pages/TussleDetail';
+import Clients from './pages/Clients';
+import Orders from './pages/Orders';
+import Products from './pages/Products';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -73,6 +77,43 @@ function App() {
             element={
               <ProtectedRoute>
                 <DashboardRouter />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* MRP System Routes */}
+          <Route
+            path="/tussles/:id"
+            element={
+              <ProtectedRoute>
+                <TussleDetail />
+              </ProtectedRoute>
+            }
+          />
+          
+          <Route
+            path="/clients"
+            element={
+              <ProtectedRoute>
+                <Clients />
+              </ProtectedRoute>
+            }
+          />
+          
+          <Route
+            path="/orders"
+            element={
+              <ProtectedRoute>
+                <Orders />
+              </ProtectedRoute>
+            }
+          />
+          
+          <Route
+            path="/products"
+            element={
+              <ProtectedRoute>
+                <Products />
               </ProtectedRoute>
             }
           />
