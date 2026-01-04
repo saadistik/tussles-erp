@@ -1316,7 +1316,6 @@ const OwnerDashboard = () => {
           )}
         </AnimatePresence>
       </AppLayout>
-    </div>
   );
 };
 
